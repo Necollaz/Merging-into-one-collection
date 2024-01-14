@@ -1,0 +1,28 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        List<string> firstListNumbers = new List<string>() { "1", "2", "1" };
+        List<string> secondListNumbers = new List<string>() { "3", "2" };
+
+        Console.WriteLine("Первый массив: ");
+        foreach (var list in firstListNumbers)
+            Console.WriteLine(list);
+
+        Console.WriteLine("Второй массив: ");
+        foreach (var list in secondListNumbers)
+            Console.WriteLine(list);
+
+        Console.WriteLine("Новый массив: ");
+        MergeArrays(firstListNumbers, secondListNumbers);
+        Console.ReadKey();
+    }
+
+    private static void MergeArrays(List<string> firstListNumbers, List<string> secondListNumbers)
+    {
+        IEnumerable<string> finalListNumbers = firstListNumbers.Union(secondListNumbers);
+
+        foreach (var list in finalListNumbers)
+            Console.WriteLine(list);
+    }
+}
