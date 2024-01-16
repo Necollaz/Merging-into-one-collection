@@ -2,42 +2,30 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        List<string> firstListNumbers = new List<string>() { "1", "2", "1" };
-        List<string> secondListNumbers = new List<string>() { "3", "2" };
+        string[] firstArray = { "1", "2", "1" };
+        string[] secondArray = { "3", "2" };
 
-        Console.WriteLine("Первый массив: ");
-        ShowArray(firstListNumbers);
+        HashSet<string> resultArray = new HashSet<string>();
 
-        Console.WriteLine("Второй массив: ");
-        ShowArray(secondListNumbers);
+        AddNumberInArray(resultArray, firstArray);
+        AddNumberInArray(resultArray, secondArray);
 
-        Console.WriteLine("Новый массив: ");
-        MergeArrays(firstListNumbers, secondListNumbers);
+        resultArray.UnionWith(firstArray);
+        resultArray.UnionWith(secondArray);
+
+        foreach (var number in resultArray)
+        {
+            Console.WriteLine(number);
+        }
+
         Console.ReadKey();
     }
 
-    private static void MergeArrays(List<string> firstList, List<string> secondList)
+    static void AddNumberInArray(HashSet<string> numbers, string[] array)
     {
-        List<string> resultList = new List<string>();
-
-        foreach (var element in firstList.Concat(secondList))
+        for (int i = 0; i < array.Length; i++)
         {
-            if(resultList.Contains(element) == false)
-            {
-                resultList.Add(element);
-            }
-        }
-
-        foreach (var list in resultList)
-        {
-            Console.WriteLine(list);
-        }
-    }
-    private static void ShowArray(List<string> arrays)
-    {
-        foreach(var array in arrays)
-        {
-            Console.WriteLine(array);
+            numbers.Add(array[i]);
         }
     }
 }
