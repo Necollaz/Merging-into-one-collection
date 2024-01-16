@@ -6,23 +6,38 @@ internal class Program
         List<string> secondListNumbers = new List<string>() { "3", "2" };
 
         Console.WriteLine("Первый массив: ");
-        foreach (var list in firstListNumbers)
-            Console.WriteLine(list);
+        ShowArray(firstListNumbers);
 
         Console.WriteLine("Второй массив: ");
-        foreach (var list in secondListNumbers)
-            Console.WriteLine(list);
+        ShowArray(secondListNumbers);
 
         Console.WriteLine("Новый массив: ");
         MergeArrays(firstListNumbers, secondListNumbers);
         Console.ReadKey();
     }
 
-    private static void MergeArrays(List<string> firstListNumbers, List<string> secondListNumbers)
+    private static void MergeArrays(List<string> firstList, List<string> secondList)
     {
-        IEnumerable<string> finalListNumbers = firstListNumbers.Union(secondListNumbers);
+        List<string> resultList = new List<string>();
 
-        foreach (var list in finalListNumbers)
+        foreach (var element in firstList.Concat(secondList))
+        {
+            if(resultList.Contains(element) == false)
+            {
+                resultList.Add(element);
+            }
+        }
+
+        foreach (var list in resultList)
+        {
             Console.WriteLine(list);
+        }
+    }
+    private static void ShowArray(List<string> arrays)
+    {
+        foreach(var array in arrays)
+        {
+            Console.WriteLine(array);
+        }
     }
 }
